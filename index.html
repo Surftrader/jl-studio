@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 
 <body>
@@ -36,6 +37,23 @@
             </div>
         </nav>
     </header>
+
+    <!-- New Video Section -->
+    <section id="promo-video" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Experience Our Salon</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center mt-3">Get a glimpse of our expert stylists in action and the welcoming atmosphere of
+                our salon.</p>
+        </div>
+    </section>
 
     <main>
         <section id="home" class="hero">
@@ -68,6 +86,30 @@
                 <h2>Our Portfolio</h2>
                 <div class="row" id="portfolio-gallery">
                     <!-- Add portfolio images here -->
+                    <div class="col-md-4 mb-4">
+                        <img src="https://via.placeholder.com/400x300.jpg?text=Elegant+Updo" alt="Elegant Updo"
+                            class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="https://via.placeholder.com/400x300.jpg?text=Modern+Bob+Cut" alt="Modern Bob Cut"
+                            class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="https://via.placeholder.com/400x300.jpg?text=Vibrant+Color+Transformation"
+                            alt="Vibrant Color Transformation" class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="https://via.placeholder.com/400x300.jpg?text=Classic+Men's+Cut"
+                            alt="Classic Men's Cut" class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="https://via.placeholder.com/400x300.jpg?text=Beachy+Waves" alt="Beachy Waves"
+                            class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <img src="https://via.placeholder.com/400x300.jpg?text=Bridal+Hairstyle" alt="Bridal Hairstyle"
+                            class="img-fluid rounded">
+                    </div>
                 </div>
             </div>
         </section>
@@ -94,10 +136,14 @@
                 <h2>Contact Us</h2>
                 <div class="row">
                     <div class="col-md-6">
-                        <!-- Add contact information and form here -->
+                        <form>
+                            <!-- Existing form elements -->
+                        </form>
                     </div>
                     <div class="col-md-6">
-                        <!-- Add Google Map embed here -->
+                        <h3>Our Location</h3>
+                        <p>123 Main St, Austin, TX 78701</p>
+                        <div id="map" style="width: 100%; height: 400px;"></div>
                     </div>
                 </div>
             </div>
@@ -159,6 +205,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+    <script>
+        function initMap() {
+            const location = { lat: 30.2672, lng: -97.7431 }; // Coordinates for Austin, TX
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 15,
+                center: location,
+            });
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+            });
+        }
+
+        window.onload = initMap;
+    </script>
+    <script>
+        var map = L.map('map').setView([30.2672, -97.7431], 15);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        L.marker([30.2672, -97.7431]).addTo(map)
+            .bindPopup('123 Main St, Austin, TX 78701')
+            .openPopup();
+    </script>
 </body>
 
 </html>
